@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "359824515912",
+    "project_id": "locachat-d2756",
+    "storage_bucket": "locachat-d2756.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:359824515912:android:40748e608f16e25d03c97d",
+        "android_client_info": {
+          "package_name": "com.example.amezone"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmikd0dui0_y3_DEyryuWe3uliffJLS4g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
