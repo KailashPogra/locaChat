@@ -1,17 +1,16 @@
-import 'package:locachat/constants/custom_frature.dart';
+import 'package:locachat/constants/custom_feature.dart';
 import 'package:locachat/constants/globle_variable.dart';
-import 'package:locachat/features/chat_users/screen/chat_users_screen.dart';
+import 'package:locachat/screens/chat_users/screen/chat_users_screen.dart';
 
-import 'package:locachat/features/profile/screens/profile_screen.dart';
-import 'package:locachat/features/chat/screen/chat_screen.dart';
-import 'package:locachat/features/home/screens/home_page.dart';
+import 'package:locachat/screens/profile/screens/profile_screen.dart';
+
+import 'package:locachat/screens/home/screens/home_page.dart';
 import 'package:flutter/material.dart';
 
 class BottomBar extends StatefulWidget {
-  final double latitude;
-  final double longitude;
-  const BottomBar({Key? key, required this.latitude, required this.longitude})
-      : super(key: key);
+  const BottomBar({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<BottomBar> createState() => _BottomBarState();
@@ -26,10 +25,7 @@ class _BottomBarState extends State<BottomBar> {
   void initState() {
     super.initState();
     pages = [
-      HomeScreen(
-        latitude: widget.latitude,
-        longitude: widget.longitude,
-      ),
+      const HomeScreen(),
       const ChatUsersScreen(),
       const ProfileScreen(),
     ];
@@ -61,9 +57,15 @@ class _BottomBarState extends State<BottomBar> {
         ),
         child: BottomNavigationBar(
           currentIndex: _page,
-          selectedItemColor: GlobleVariable.selectedNavBarColor,
-          unselectedItemColor: GlobleVariable.unselectedNavBarColor,
-          backgroundColor: GlobleVariable.backgroundColor,
+          backgroundColor: Theme.of(context).brightness == Brightness.dark
+              ? Colors.black
+              : Colors.white,
+          selectedItemColor: Theme.of(context).brightness == Brightness.dark
+              ? Colors.white
+              : Colors.blue,
+          unselectedItemColor: Theme.of(context).brightness == Brightness.dark
+              ? Colors.grey
+              : Colors.black54,
           iconSize: 28,
           onTap: updatePage,
           items: [

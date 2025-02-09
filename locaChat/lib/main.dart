@@ -1,6 +1,8 @@
-import 'package:locachat/constants/globle_variable.dart';
-import 'package:locachat/features/notification/notification_services.dart';
-import 'package:locachat/features/splash/splash_screen.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:locachat/screens/notification/notification_services.dart';
+import 'package:locachat/screens/splash/splash_screen.dart';
+import 'package:locachat/provider/chat_screen_provider.dart';
 import 'package:locachat/provider/chat_users_provider.dart';
 import 'package:locachat/provider/home_screen_provider.dart';
 import 'package:locachat/provider/save_chat_provider.dart';
@@ -12,11 +14,14 @@ import 'package:locachat/routs.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  await Hive.openBox('apiCache');
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -62,6 +67,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (context) => ChatScreenProvider()),
         ChangeNotifierProvider(create: (context) => SignUpProvider()),
         ChangeNotifierProvider(create: (context) => SignInProvider()),
         ChangeNotifierProvider(create: (context) => UpdateProfileProvider()),
@@ -72,14 +78,10 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
           onGenerateRoute: Routes.generateRoutes,
-          theme: ThemeData(
-              useMaterial3: false,
-              scaffoldBackgroundColor: GlobleVariable.backgroundColor,
-              colorScheme:
-                  ColorScheme.light(primary: GlobleVariable.secondaryColor),
-              appBarTheme: const AppBarTheme(
-                  elevation: 0, iconTheme: IconThemeData(color: Colors.black))),
-          home: SplashScreen()),
+          theme: ThemeData.light(),
+          darkTheme: ThemeData.dark(),
+          themeMode: ThemeMode.system,
+          home: const SplashScreen()),
     );
   }
 }

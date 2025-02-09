@@ -16,16 +16,10 @@ class SaveChatProvider extends ChangeNotifier {
     setLoading(true);
     saveChatRepo.saveChatApi(data).then((value) {
       setLoading(false);
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Message sent successfully'),
-        ),
-      );
     }).onError((error, stackTrace) {
       setLoading(false);
 
-      showSnackBar(context, error.toString());
+      showSnackBar(error.toString());
     });
   }
 }

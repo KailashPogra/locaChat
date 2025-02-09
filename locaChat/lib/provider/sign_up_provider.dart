@@ -30,17 +30,12 @@ class SignUpProvider extends ChangeNotifier {
     )
         .then((value) {
       setLoading(false);
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => BottomBar(
-                  latitude: locationService.latitude!,
-                  longitude: locationService.longitude!)));
-      showSnackBar(
-          context, "Account created. plese Login with the same credentials!");
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const BottomBar()));
+      showSnackBar("Account created. plese Login with the same credentials!");
     }).onError((error, stackTrace) {
       setLoading(false);
-      showSnackBar(context, error.toString());
+      showSnackBar(error.toString());
     });
   }
 }

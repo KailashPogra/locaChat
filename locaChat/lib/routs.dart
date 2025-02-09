@@ -1,9 +1,8 @@
 import 'package:locachat/common/widgets/bottom_bar.dart';
-import 'package:locachat/features/auth/screens/sign_in_screen.dart';
-import 'package:locachat/features/auth/screens/sign_up_screen.dart';
-import 'package:locachat/features/chat/screen/chat_screen.dart';
-import 'package:locachat/features/home/screens/home_page.dart';
-import 'package:locachat/features/splash/splash_screen.dart';
+import 'package:locachat/screens/auth/screens/sign_in_screen.dart';
+import 'package:locachat/screens/auth/screens/sign_up_screen.dart';
+
+import 'package:locachat/screens/splash/splash_screen.dart';
 import 'package:locachat/routs_name.dart';
 
 import 'package:flutter/material.dart';
@@ -11,6 +10,9 @@ import 'package:flutter/material.dart';
 class Routes {
   static Route<dynamic> generateRoutes(RouteSettings settings) {
     switch (settings.name) {
+      case RoutsName.bottombar:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const BottomBar());
       case RoutsName.signUp:
         return MaterialPageRoute(
             builder: (BuildContext context) => const SignUpScreen());

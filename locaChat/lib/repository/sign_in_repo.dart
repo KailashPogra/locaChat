@@ -16,7 +16,10 @@ class SignInRepository {
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setString("x-auth-token", response['token']);
-
+      if (response.containsKey('msg')) {
+        return response[
+            'msg']; // Return the message (e.g., "Incorrect password")
+      }
       return response;
     } catch (e) {
       if (kDebugMode) {

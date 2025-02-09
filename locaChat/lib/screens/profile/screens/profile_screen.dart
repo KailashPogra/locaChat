@@ -2,9 +2,10 @@ import 'dart:io';
 import 'package:locachat/common/widgets/custom_button.dart';
 import 'package:locachat/common/widgets/custom_textfield.dart';
 import 'package:locachat/constants/api_url.dart';
-import 'package:locachat/constants/custom_frature.dart';
+import 'package:locachat/constants/custom_feature.dart';
 import 'package:locachat/provider/update_profile_provider.dart';
 import 'package:locachat/repository/auth_repo.dart';
+import 'package:locachat/routs_name.dart';
 import 'package:locachat/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -57,7 +58,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder(
-        future: auth.authApi(context),
+        future: auth.authApi(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -210,7 +211,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         circularProgressIndicator:
                             updateProfileProvider.loading,
                         onTap: () async {
-                          Navigator.pushNamed(context, "signin_screen");
+                          Navigator.pushNamedAndRemoveUntil(
+                              context, RoutsName.signUp, (route) => false);
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
                           prefs.remove("x-auth-token");
@@ -228,7 +230,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           if (image == null &&
                               fullNameController.text.toString().isEmpty &&
                               emailController.text.toString().isEmpty) {
-                            showSnackBar(context,
+                            showSnackBar(
                                 "please select or enter somthing for updating profile");
                             return;
                           }

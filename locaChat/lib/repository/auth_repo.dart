@@ -12,7 +12,7 @@ class AuthRepo {
 
   BaseApiServices authServices = NetworkApiSarvices();
 
-  Future<dynamic> authApi(BuildContext context) async {
+  Future<dynamic> authApi() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? token = prefs.getString("x-auth-token");
 

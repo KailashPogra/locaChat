@@ -3,6 +3,7 @@ import 'package:locachat/data/network/base_api_sarvices.dart';
 import 'package:locachat/data/network/network_api_sarvices.dart';
 import 'package:locachat/models/chat_user_model.dart';
 import 'package:flutter/foundation.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ChatUsersRepository {
@@ -20,6 +21,7 @@ class ChatUsersRepository {
       });
       print("chat user repo called");
       // print(response);
+
       return chatUserModel.fromJson(response);
     } catch (e) {
       if (kDebugMode) {

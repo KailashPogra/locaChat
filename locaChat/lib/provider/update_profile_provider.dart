@@ -27,10 +27,10 @@ class UpdateProfileProvider extends ChangeNotifier {
     )
         .then((value) {
       setLoading(false);
-      showSnackBar(context, "profile update sucessfull");
+      showSnackBar("profile update sucessfull");
     }).onError((error, stackTrace) {
       setLoading(false);
-      showSnackBar(context, "Error: $error");
+      showSnackBar("Error: $error");
     });
   }
 }

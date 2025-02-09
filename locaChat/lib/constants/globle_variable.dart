@@ -1,4 +1,4 @@
-import 'package:locachat/constants/custom_frature.dart';
+import 'package:locachat/constants/custom_feature.dart';
 import 'package:flutter/material.dart';
 
 class GlobleVariable {

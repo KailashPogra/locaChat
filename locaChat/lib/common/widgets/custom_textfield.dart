@@ -1,4 +1,4 @@
-import 'package:locachat/constants/custom_frature.dart';
+import 'package:locachat/constants/custom_feature.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -25,32 +25,28 @@ class CustomTextField extends StatelessWidget {
           ),
         ),
         child: TextFormField(
-            controller: controller,
-            decoration: InputDecoration(
-              prefixIcon: Padding(
-                padding: EdgeInsets.only(right: kWidth(4, context)),
-                child: prefixIcon,
-              ),
-              suffixIcon: suffixIcon != null
-                  ? Padding(
-                      padding: EdgeInsets.only(left: kWidth(4, context)),
-                      child: suffixIcon,
-                    )
-                  : null,
-              hintText: hintText,
-              prefixIconConstraints:
-                  const BoxConstraints(minWidth: 30, minHeight: 24),
-              contentPadding: const EdgeInsets.symmetric(
-                vertical: 16.0,
-              ),
-              hintStyle: const TextStyle(color: Colors.grey),
-              border: InputBorder.none,
+          controller: controller,
+          decoration: InputDecoration(
+            prefixIcon: Padding(
+              padding: EdgeInsets.only(right: kWidth(4, context)),
+              child: prefixIcon,
             ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Enter your $hintText';
-              }
-            }),
+            suffixIcon: suffixIcon != null
+                ? Padding(
+                    padding: EdgeInsets.only(left: kWidth(4, context)),
+                    child: suffixIcon,
+                  )
+                : null,
+            hintText: hintText,
+            prefixIconConstraints:
+                const BoxConstraints(minWidth: 30, minHeight: 24),
+            contentPadding: const EdgeInsets.symmetric(
+              vertical: 10.0,
+            ),
+            hintStyle: const TextStyle(color: Colors.grey),
+            border: InputBorder.none,
+          ),
+        ),
       ),
     );
   }
